@@ -45,17 +45,17 @@ class HowToDoAPresentation(ThreeDScene):
         self.play_principle_four()
         self.play_break(5, "Remove the Junk")
         self.play_principle_five()
-        self.play_break(6, "Consistency, Consistency, Consistency")
+        self.play_break(6, "Be consistent!")
         self.play_principle_six()
         self.play_break(7, "How to Handle Questions")
         self.play_principle_seven()
-        self.play_break(8, "Not Everything Gets Equal Screentime")
+        self.play_break(8, "Not Everything is Equal")
         self.play_principle_eight()
         self.play_break(9, "Use Animations!")
         self.play_principle_nine()
         self.play_break(10, "Avoid Long Logical Sentences")
         self.play_principle_ten()
-        self.play_break(11, "Professional Presence Is Mandatory")
+        self.play_break(11, "Professionalism is Mandatory")
         self.play_principle_eleven()
         self.play_closing()
 
@@ -158,7 +158,7 @@ class HowToDoAPresentation(ThreeDScene):
             node.move_to(np.array([orbit_radius * np.cos(angle), orbit_radius * np.sin(angle), 0]))
             principle_nodes.add(node)
 
-        orbit_center_label = Text("11 Princibles", color=TEXT_COLOR, font_size=38, weight=BOLD)
+        orbit_center_label = Text("11 Principles", color=TEXT_COLOR, font_size=38, weight=BOLD)
         orbit_center_label.set_color_by_gradient(*principle_colors)
 
         self.play(LaggedStart(*[FadeIn(node, scale=0.75) for node in principle_nodes], lag_ratio=0.07), run_time=1.2)
@@ -362,7 +362,7 @@ class HowToDoAPresentation(ThreeDScene):
             *[ReplacementTransform(question_marks[index], bulbs[index]) for index in range(len(question_marks))],
             run_time=1.0,
         )
-        self.wait(2.0)
+        self.wait(3.0)
 
         self.play(
             FadeOut(header),
@@ -454,7 +454,7 @@ class HowToDoAPresentation(ThreeDScene):
             run_time=1.0,
         )
         self.play(FadeIn(color_tip, shift=UP * 0.12), run_time=0.7)
-        self.wait(2.0)
+        self.wait(4.0)
 
         self.play(
             FadeOut(header),
@@ -568,9 +568,11 @@ class HowToDoAPresentation(ThreeDScene):
         # 1. Header + divider
         self.play(Write(header), run_time=0.8)
         self.play(Create(divider), run_time=0.5)
+        self.wait(1.2)
 
         # 2. Center node
         self.play(FadeIn(center_node, scale=0.8), run_time=0.6)
+        self.wait(1.2)
 
         # 3. Satellites radiate out (staggered)
         self.play(
@@ -581,14 +583,14 @@ class HowToDoAPresentation(ThreeDScene):
             ),
             run_time=1.6,
         )
-        self.wait(0.3)
+        self.wait(1.5)
 
         # 4. Red crosses over satellites
         self.play(
             LaggedStart(*[Create(cross) for cross in sat_crosses], lag_ratio=0.15),
             run_time=1.0,
         )
-        self.wait(0.3)
+        self.wait(1.5)
 
         # 5. Fade out satellites, show focus ring around Our Subject
         self.play(
@@ -598,24 +600,25 @@ class HowToDoAPresentation(ThreeDScene):
             Create(focus_ring),
             run_time=0.8,
         )
+        self.wait(1.2)
 
         # 6. Blink effect (2 pulses)
         for _ in range(2):
             self.play(focus_ring.animate.scale(1.25), run_time=0.18)
             self.play(focus_ring.animate.scale(1 / 1.25), run_time=0.18)
-        self.wait(0.5)
+        self.wait(1.5)
 
         # 7. Card + heading + underline
         self.play(Create(card), run_time=0.5)
         self.play(Write(pres_title), Create(underline), run_time=0.7)
-        self.wait(0.3)
+        self.wait(1.2)
 
         # 8. Lines appear one at a time
         for pline in pres_lines:
             self.play(FadeIn(pline, shift=RIGHT * 0.15), run_time=0.5)
-            self.wait(0.5)
+            self.wait(1.2)
 
-        self.wait(1.5)
+        self.wait(2.5)
 
         # 9. Fade out
         self.play(
@@ -1948,3 +1951,69 @@ class BreakOnly(HowToDoAPresentation):
     def construct(self):
         self.camera.background_color = BG_COLOR
         self.play_break(1, "Clarity Beats Complexity")
+
+
+class BreakOneOnly(HowToDoAPresentation):
+    def construct(self):
+        self.camera.background_color = BG_COLOR
+        self.play_break(1, "Clarity Beats Complexity")
+
+
+class BreakTwoOnly(HowToDoAPresentation):
+    def construct(self):
+        self.camera.background_color = BG_COLOR
+        self.play_break(2, "The Power of Colors")
+
+
+class BreakThreeOnly(HowToDoAPresentation):
+    def construct(self):
+        self.camera.background_color = BG_COLOR
+        self.play_break(3, "One Thing at a Time")
+
+
+class BreakFourOnly(HowToDoAPresentation):
+    def construct(self):
+        self.camera.background_color = BG_COLOR
+        self.play_break(4, "It's OK to Lie (a bit)")
+
+
+class BreakFiveOnly(HowToDoAPresentation):
+    def construct(self):
+        self.camera.background_color = BG_COLOR
+        self.play_break(5, "Remove the Junk")
+
+
+class BreakSixOnly(HowToDoAPresentation):
+    def construct(self):
+        self.camera.background_color = BG_COLOR
+        self.play_break(6, "Be consistent!")
+
+
+class BreakSevenOnly(HowToDoAPresentation):
+    def construct(self):
+        self.camera.background_color = BG_COLOR
+        self.play_break(7, "How to Handle Questions")
+
+
+class BreakEightOnly(HowToDoAPresentation):
+    def construct(self):
+        self.camera.background_color = BG_COLOR
+        self.play_break(8, "Not Everything is Equal")
+
+
+class BreakNineOnly(HowToDoAPresentation):
+    def construct(self):
+        self.camera.background_color = BG_COLOR
+        self.play_break(9, "Use Animations!")
+
+
+class BreakTenOnly(HowToDoAPresentation):
+    def construct(self):
+        self.camera.background_color = BG_COLOR
+        self.play_break(10, "Avoid Long Logical Sentences")
+
+
+class BreakElevenOnly(HowToDoAPresentation):
+    def construct(self):
+        self.camera.background_color = BG_COLOR
+        self.play_break(11, "Professionalism is Mandatory")
