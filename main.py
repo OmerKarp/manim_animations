@@ -1006,7 +1006,7 @@ class HowToDoAPresentation(ThreeDScene):
         red_palette = ["#FCA5A5", "#FB7185", "#F87171"]
 
         impact = Text(
-            "Better one student stays a bit unclear\nthan 30 students lose the thread.",
+            "Better one student stays a bit unclear\nthan 30 students lose interest.",
             color="#FCA5A5",
             font_size=28,
         )
@@ -1017,12 +1017,12 @@ class HowToDoAPresentation(ThreeDScene):
         rules_card.set_fill(color="#0F172A", opacity=0.9)
         rules_card.move_to(np.array([0, -0.65, 0]))
 
-        rules_title = Text("Practical default", color=ACCENT_BLUE, font_size=31, weight=BOLD)
+        rules_title = Text("In Practice", color=ACCENT_BLUE, font_size=31, weight=BOLD)
         rules_title.move_to(rules_card.get_top() + DOWN * 0.4)
 
-        rule1 = Text("1. During explanations, collect questions; do not stop every time.", color=TEXT_COLOR, font_size=24)
-        rule2 = Text("2. Answer only blockers in the moment (20-40 sec max).", color=TEXT_COLOR, font_size=24)
-        rule3 = Text("3. Take a short question break at section boundaries.", color=TEXT_COLOR, font_size=24)
+        rule1 = Text("1. During explanations, do not stop every time.", color=TEXT_COLOR, font_size=24)
+        rule2 = Text("2. Answer only blocker questions in the moment (20-40 sec max).", color=TEXT_COLOR, font_size=24)
+        rule3 = Text("3. Take a short question break between sections.", color=TEXT_COLOR, font_size=24)
         rules = VGroup(rule1, rule2, rule3).arrange(DOWN, aligned_edge=LEFT, buff=0.26)
         rules.move_to(rules_card.get_center() + DOWN * 0.3)
 
