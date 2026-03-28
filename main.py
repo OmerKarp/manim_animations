@@ -583,7 +583,7 @@ class HowToDoAPresentation(ThreeDScene):
             ),
             run_time=1.6,
         )
-        self.wait(1.5)
+        self.wait(3.0)
 
         # 4. Red crosses over satellites
         self.play(
@@ -618,7 +618,7 @@ class HowToDoAPresentation(ThreeDScene):
             self.play(FadeIn(pline, shift=RIGHT * 0.15), run_time=0.5)
             self.wait(1.2)
 
-        self.wait(2.5)
+        self.wait(4.5)
 
         # 9. Fade out
         self.play(
@@ -711,16 +711,19 @@ class HowToDoAPresentation(ThreeDScene):
         # ── Animations ───────────────────────────────────────────────────────
         self.play(Write(header), run_time=0.8)
         self.play(Create(divider), run_time=0.4)
+        self.wait(0.6)
         self.play(
             FadeIn(left_col_label, shift=RIGHT * 0.1),
             FadeIn(right_col_label, shift=LEFT * 0.1),
             run_time=0.7,
         )
+        self.wait(0.5)
         self.play(
             FadeIn(concept_dot_l), Write(concept_label_l),
             FadeIn(concept_dot_r), Write(concept_label_r),
             run_time=0.7,
         )
+        self.wait(0.6)
 
         # Left: tortured winding path + caveats bubbling up
         self.play(
@@ -729,12 +732,13 @@ class HowToDoAPresentation(ThreeDScene):
             run_time=3.0,
         )
         self.play(FadeIn(understand_dot_l), Write(understand_l), run_time=0.6)
-        self.wait(0.6)
+        self.wait(1.0)
 
         # Right: clean arrow rockets straight to understanding
         self.play(GrowArrow(right_arrow), run_time=0.8)
+        self.wait(0.5)
         self.play(FadeIn(understand_dot_r, scale=1.2), Write(understand_r), run_time=0.6)
-        self.wait(0.8)
+        self.wait(1.1)
 
         self.play(Write(insight), run_time=1.0)
         self.play(
@@ -745,7 +749,7 @@ class HowToDoAPresentation(ThreeDScene):
             insight_perfect.animate.set_color(ACCENT_BLUE).scale(1 / 1.08),
             run_time=0.35,
         )
-        self.wait(2.0)
+        self.wait(2.4)
 
         # ── Fade out ─────────────────────────────────────────────────────────
         self.play(
@@ -810,7 +814,7 @@ class HowToDoAPresentation(ThreeDScene):
         )
         self.wait(0.4)
         self.play(FadeIn(warning, shift=UP * 0.08), run_time=0.6)
-        self.wait(0.4)
+        self.wait(1.9)
 
         self.play(
             LaggedStart(*[FadeOut(item, scale=0.7) for item in junk_items], lag_ratio=0.1),
@@ -823,7 +827,7 @@ class HowToDoAPresentation(ThreeDScene):
             run_time=0.55,
         )
         self.play(FadeIn(final_line, shift=UP * 0.08), run_time=0.6)
-        self.wait(2.0)
+        self.wait(4.0)
 
         self.play(
             FadeOut(header),
@@ -892,28 +896,28 @@ class HowToDoAPresentation(ThreeDScene):
 
         self.play(LaggedStart(*[Write(line) for line in left_stack], lag_ratio=0.25), run_time=1.3)
         self.play(FadeIn(good_note, shift=UP * 0.1), run_time=0.55)
-        self.wait(0.4)
+        self.wait(0.6)
 
         self.play(Write(right_a), run_time=0.7)
-        self.wait(0.3)
+        self.wait(0.45)
         self.play(
             right_a.animate.move_to(right_stack_2[0].get_center()),
             FadeIn(right_b, shift=UP * 0.08),
             run_time=0.75,
         )
-        self.wait(0.35)
+        self.wait(0.5)
         self.play(
             right_a.animate.move_to(right_stack_3[0].get_center()),
             right_b.animate.move_to(right_stack_3[1].get_center()),
             FadeIn(right_c, shift=UP * 0.08),
             run_time=0.8,
         )
-        self.wait(0.45)
+        self.wait(0.65)
         self.play(Create(bad_cross), FadeIn(bad_note, shift=UP * 0.1), run_time=0.75)
-        self.wait(0.9)
+        self.wait(1.3)
 
         self.play(Write(summary), run_time=0.9)
-        self.wait(2.8)
+        self.wait(4.0)
 
         self.play(
             FadeOut(header),
