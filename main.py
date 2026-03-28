@@ -8,6 +8,9 @@ BG_COLOR = "#0B1020"
 ACCENT_BLUE = "#4CC9F0"
 ACCENT_GREEN = "#80ED99"
 ACCENT_ORANGE = "#FF9F1C"
+POP_RED = "#FF1F3D"
+POP_DEEP_BLUE = "#003CFF"
+POP_GOLD = "#FFD400"
 TEXT_COLOR = "#F8FAFC"
 MUTED_TEXT = "#CBD5E1"
 
@@ -425,9 +428,9 @@ class HowToDoAPresentation(ThreeDScene):
 
         for eq_col in (eq1_col, eq2_col, eq3_col, eq4_col):
             eq_col.set_color(MUTED_TEXT)
-            eq_col.set_color_by_tex("x", ACCENT_ORANGE)
-            eq_col.set_color_by_tex(r"\omega", ACCENT_BLUE)
-            eq_col.set_color_by_tex("10", ACCENT_GREEN)
+            eq_col.set_color_by_tex("x", POP_RED)
+            eq_col.set_color_by_tex(r"\omega", POP_DEEP_BLUE)
+            eq_col.set_color_by_tex("10", POP_GOLD)
 
         color_tip = Text(
             "Now your eyes can track x, omega, and 10 instantly!",
