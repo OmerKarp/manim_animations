@@ -1200,7 +1200,7 @@ class HowToDoAPresentation(ThreeDScene):
         )
         self.wait(0.9)
         self.play(Write(takeaway), run_time=1.0)
-        self.wait(2.2)
+        self.wait(4.2)
 
         self.play(
             FadeOut(header),
