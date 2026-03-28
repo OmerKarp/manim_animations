@@ -1839,14 +1839,18 @@ class HowToDoAPresentation(ThreeDScene):
 
         self.play(Write(header), FadeIn(subtitle, shift=UP * 0.08), run_time=1.3)
         self.play(Create(left_panel), Create(right_panel), run_time=1.0)
+        self.wait(0.6)
 
         self.play(Write(checklist_title), Write(cred_title), run_time=1.0)
+        self.wait(0.5)
         self.play(LaggedStart(Write(item1), Write(item2), Write(item3), Write(item4), lag_ratio=0.2), run_time=2.0)
+        self.wait(0.6)
 
         self.play(LaggedStart(*[FadeIn(cm, shift=RIGHT * 0.08) for cm in check_marks], lag_ratio=0.18), run_time=1.2)
+        self.wait(0.5)
         self.play(Create(trust_bg), FadeIn(trust_fill), FadeIn(trust_label, shift=UP * 0.08), run_time=1.0)
         self.play(FadeIn(warning, shift=UP * 0.08), run_time=0.9)
-        self.wait(1.0)
+        self.wait(1.6)
 
         self.play(
             ReplacementTransform(trust_fill, trust_low_fill),
@@ -1857,10 +1861,10 @@ class HowToDoAPresentation(ThreeDScene):
             Transform(check_marks[3], x_marks[3]),
             run_time=1.0,
         )
-        self.wait(0.9)
+        self.wait(1.4)
 
         self.play(Write(mandatory), run_time=1.0)
-        self.wait(2.0)
+        self.wait(3.0)
 
         self.play(
             FadeOut(header), FadeOut(subtitle), FadeOut(left_panel), FadeOut(right_panel),
