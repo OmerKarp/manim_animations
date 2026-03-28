@@ -138,6 +138,70 @@ class HowToDoAPresentation(ThreeDScene):
         self.wait(2.0)
         self.play(FadeOut(title), FadeOut(middle_row), FadeOut(subtitle), run_time=0.8)
 
+        principle_colors = [
+            "#EF4444", "#F97316", "#F59E0B", "#EAB308", "#84CC16", "#22C55E",
+            "#14B8A6", "#06B6D4", "#3B82F6", "#8B5CF6", "#EC4899",
+        ]
+        principle_palette = [ManimColor(c) for c in principle_colors]
+        principle_nodes = VGroup()
+        base_angles = []
+        orbit_radius = 2.4
+
+        for i, color in enumerate(principle_colors, start=1):
+            circle = Circle(radius=0.36)
+            circle.set_stroke(color=color, width=3)
+            circle.set_fill(color=color, opacity=0.16)
+            number = Text(str(i), color=color, font_size=30, weight=BOLD)
+            node = VGroup(circle, number)
+            angle = TAU * (i - 1) / 11
+            base_angles.append(angle)
+            node.move_to(np.array([orbit_radius * np.cos(angle), orbit_radius * np.sin(angle), 0]))
+            principle_nodes.add(node)
+
+        orbit_center_label = Text("11 Princibles", color=TEXT_COLOR, font_size=38, weight=BOLD)
+        orbit_center_label.set_color_by_gradient(*principle_colors)
+
+        self.play(LaggedStart(*[FadeIn(node, scale=0.75) for node in principle_nodes], lag_ratio=0.07), run_time=1.2)
+        self.play(FadeIn(orbit_center_label, shift=UP * 0.08), run_time=0.45)
+        orbit_phase = ValueTracker(0.0)
+        color_phase = ValueTracker(0.0)
+
+        def update_center_label(mobj):
+            n = len(mobj)
+            if n == 0:
+                return
+            for idx, glyph in enumerate(mobj):
+                t = (idx / max(1, n - 1) + color_phase.get_value()) % 1.0
+                p = t * len(principle_palette)
+                i0 = int(np.floor(p)) % len(principle_palette)
+                i1 = (i0 + 1) % len(principle_palette)
+                frac = p - np.floor(p)
+                glyph.set_color(interpolate_color(principle_palette[i0], principle_palette[i1], frac))
+
+        orbit_center_label.add_updater(lambda m: update_center_label(m))
+        for idx, node in enumerate(principle_nodes):
+            node.add_updater(
+                lambda m, dt, idx=idx: m.move_to(
+                    np.array([
+                        orbit_radius * np.cos(base_angles[idx] + orbit_phase.get_value()),
+                        orbit_radius * np.sin(base_angles[idx] + orbit_phase.get_value()),
+                        0,
+                    ])
+                )
+            )
+
+        self.play(
+            orbit_phase.animate.set_value(TAU * 0.55),
+            color_phase.animate.set_value(1.2),
+            run_time=6.8,
+            rate_func=linear,
+        )
+        for node in principle_nodes:
+            node.clear_updaters()
+        orbit_center_label.clear_updaters()
+        self.wait(0.4)
+        self.play(FadeOut(principle_nodes), FadeOut(orbit_center_label), run_time=0.6)
+
     def play_break(self, number: int, title: str):
         card = RoundedRectangle(corner_radius=0.3, width=9.5, height=5.0)
         card.set_stroke(color=ACCENT_BLUE, width=2.5)
